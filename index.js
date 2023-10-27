@@ -1,6 +1,8 @@
 const express = require('express');
 const db = require('./config/db');
 
+const userRoutes = require('./routes/user');
+
 const User = require('./schema/user');
 const Blog = require('./schema/blog');
 
@@ -12,6 +14,9 @@ User.hasMany(Blog, {
 });
 
 app.use(express.json());
+
+
+app.use('/user', userRoutes);
 
 app.use('/', (req, res)=> {
     res.send('Hello world');
